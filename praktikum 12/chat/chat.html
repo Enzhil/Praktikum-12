@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Message</title>
+
+    <!-- CSS -->
+    <style>
+      .chat-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        overflow: hidden;
+        margin: 10px;
+      }
+
+      .chat-messages {
+        padding: 12px;
+      }
+
+      #message-input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #send-button {
+        background-color: #979797;
+        color: #fff;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+      }
+    </style>
+
+    <!-- JS -->
+    <script>
+      function sendMessage() {
+        let messageInput = document.getElementById("message-input");
+        let messageText = messageInput.value.trim();
+
+        if (messageText !== "") {
+          let chatMessages = document.getElementById("chat-messages");
+          let messageDiv = document.createElement("div");
+          messageDiv.className = "message";
+          messageDiv.innerText = messageText;
+
+          chatMessages.appendChild(messageDiv);
+
+          messageInput.value = "";
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div id="chat-messages" class="chat-messages"></div>
+      <div class="message-input">
+        <input type="text" id="message-input" placeholder="Type Here" />
+        <button id="send-button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </body>
+</html>

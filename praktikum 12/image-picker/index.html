@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Picker</title>
+
+    <!-- JS -->
+    <script>
+      function image_picker() {
+        const list_gambar = ["hp.jpg", "int.jpg", "lor.jpg"];
+        let pilihan = document.getElementById("a").value;
+
+        if (pilihan == "1") {
+          let select = list_gambar[0];
+          document.getElementById("foto").src = `imgs/${select}`;
+        }
+
+        if (pilihan == "2") {
+          let select = list_gambar[1];
+          document.getElementById("foto").src = `imgs/${select}`;
+        }
+
+        if (pilihan == "3") {
+          let select = list_gambar[2];
+          document.getElementById("foto").src = `imgs/${select}`;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Image Picker</h1>
+
+    <select name="" id="a" onchange="image_picker()">
+      <option value="1">Harry Potter</option>
+      <option value="2">Interstellar</option>
+      <option value="3">Lord of the rings</option>
+    </select>
+
+    <div class="container">
+      <img id="foto" width="500px" />
+    </div>
+  </body>
+</html>

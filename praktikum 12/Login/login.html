@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Authentication</title>
+
+    <!-- CSS -->
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      .form_login {
+        align-items: center;
+        text-align: center;
+      }
+    </style>
+
+    <!-- Js -->
+    <script>
+      function Login() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        if (username === "arbyali@gmail.com" && password === "12345") {
+          alert("Berhasil Login");
+        } else {
+          alert("Login Gagal");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="form_login">
+      <h1>Login</h1>
+
+      <form id="login">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="E-mail" />
+
+        <br />
+        <br />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Password" />
+
+        <br />
+        <br />
+
+        <button type="button" onclick="Login()">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

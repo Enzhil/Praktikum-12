@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kurs Rupiah</title>
+
+    <!-- CSS -->
+    <style>
+      .j_tabel {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      fieldset {
+        width: 28%;
+      }
+    </style>
+
+    <!-- JS -->
+    <script>
+      function convert() {
+        let input = document.getElementById("nilai").value;
+        let mata_uang = document.getElementById("valas").value;
+
+        console.log(input * mata_uang);
+
+        let nilai_rupiah = document.getElementById("output");
+        nilai_rupiah.innerHTML = input * mata_uang;
+      }
+    </script>
+  </head>
+  <body>
+    <fieldset>
+      <legend>Kurs Rupiah - Mata Uang Asing</legend>
+      <table border="1">
+        <tr class="j_tabel">
+          <td>Masukan Nilai</td>
+          <td>Valas</td>
+          <td>Nilai Rupiah</td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="number" id="nilai" onchange="convert()" />
+          </td>
+
+          <td>
+            <select name="" id="valas" onchange="convert()">
+              <option value="">Pilih Mata Uang</option>
+              <option value="9.915">Dollar US</option>
+              <option value="13.472">Dollar Singapore</option>
+              <option value="874">Ringgit Malaysia</option>
+              <option value="120">Yen Jepan</option>
+              <option value="15.888">Euro</option>
+              <option value="3.592">Riyal Arab Saudi</option>
+            </select>
+          </td>
+
+          <td>
+            <p id="output"></p>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </body>
+</html>

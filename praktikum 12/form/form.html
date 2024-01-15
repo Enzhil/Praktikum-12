@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+
+    <!-- JS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let myForm = document.getElementById("myForm");
+        myForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          validateForm();
+        });
+
+        function validateForm() {
+          resetErrors();
+
+          let namaPelanggan = document.getElementById("namaPelanggan").value;
+          let email = document.getElementById("email").value;
+          let jamKeberangkatan = document.getElementById("jam").value;
+          let tujuanKeberangkatan = document.getElementById("tujuan").value;
+          let jumlahTiket = document.getElementById("tiket").value;
+
+          let isValid = true;
+
+          if (!isValidName(namaPelanggan)) {
+            isValid = false;
+            showError("Nama harus diisi dan maksimal 30 karakter.", "namaPelanggan");
+          }
+
+          if (!isValidEmail(email)) {
+            isValid = false;
+            showError("Format Email tidak valid.", "email");
+          }
+
+          if (!isValidTime(jamKeberangkatan)) {
+            isValid = false;
+            showError("Format Jam Keberangkatan tidak valid.", "jam");
+          }
+
+          if (!isValidField(tujuanKeberangkatan)) {
+            isValid = false;
+            showError("Tujuan Keberangkatan harus diisi.", "tujuan");
+          }
+
+          if (!isValidNumber(jumlahTiket)) {
+            isValid = false;
+            showError("Jumlah Tiket harus diisi dan antara 1 - 10.", "tiket");
+          }
+
+          if (isValid) {
+            displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiket);
+          }
+        }
+
+        function isValidName(name) {
+          return name.length > 0 && name.length <= 30;
+        }
+
+        function isValidEmail(email) {
+          let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+
+        function isValidTime(time) {
+          let timeRegex = /^(?:[01]\d|2[0-3]):(?:[0-5]\d)$/;
+          return timeRegex.test(time);
+        }
+
+        function isValidField(field) {
+          return field.length > 0;
+        }
+
+        function isValidNumber(number) {
+          return Number.isInteger(parseInt(number, 10)) && number >= 1 && number <= 10;
+        }
+
+        function showError(errorMessage, fieldId) {
+          let errorElement = document.createElement("p");
+          errorElement.className = "error";
+          errorElement.textContent = errorMessage;
+
+          let field = document.getElementById(fieldId);
+          field.insertAdjacentElement("afterend", errorElement);
+        }
+
+        function resetErrors() {
+          let errors = document.querySelectorAll(".error");
+          errors.forEach(function (error) {
+            error.remove();
+          });
+        }
+
+        function displayResult(namaPelanggan, email, jamKeberangkatan, tujuanKeberangkatan, jumlahTiket) {
+          document.getElementById("resultNama").textContent = "Nama: " + namaPelanggan;
+          document.getElementById("resultEmail").textContent = "Email: " + email;
+          document.getElementById("resultJam").textContent = "Jam Keberangkatan: " + jamKeberangkatan;
+          document.getElementById("resultTujuan").textContent = "Tujuan Keberangkatan: " + tujuanKeberangkatan;
+          document.getElementById("resultTiket").textContent = "Jumlah Tiket: " + jumlahTiket;
+
+          document.getElementById("result").style.display = "block";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <form id="myForm" onsubmit="validateForm(); return false;">
+      <h1>Form Tiket</h1>
+      <label for="nama">Nama:</label>
+      <input type="text" id="namaPelanggan" required maxlength="30" placeholder="Contoh: Andri Waluya" />
+      <br />
+      <br />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" required placeholder="isiemail@gmail.com" />
+      <br />
+      <br />
+
+      <label for="jam">Jam Keberangkatan:</label>
+      <input type="time" id="jam" required />
+      <br />
+      <br />
+
+      <label for="tujuan">Tujuan Keberangkatan:</label>
+      <input type="text" id="tujuan" required placeholder="Nama Kota" />
+      <br />
+      <br />
+
+      <label for="tiket">Jumlah Tiket:</label>
+      <input type="number" id="tiket" required min="1" max="10" />
+      <br />
+      <br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" style="display: none">
+      <h2>Data Form:</h2>
+      <p id="resultNama"></p>
+      <p id="resultEmail"></p>
+      <p id="resultJam"></p>
+      <p id="resultTujuan"></p>
+      <p id="resultTiket"></p>
+    </div>
+  </body>
+</html>
